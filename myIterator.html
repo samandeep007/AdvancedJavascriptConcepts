@@ -1,29 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>
-      Iterator and Generator and YIELD Keyword | What | Practical Use Cases
-    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
   </head>
   <body>
     <script>
-      //Ways to iterate an array in javascript
-      const arr = [1, 2, 3, 4, 5];
-      for (const num in arr) {
-        console.log(arr[num]);
-      }
-
-      arr.forEach((element) => console.log(element));
-
-      for (const num of arr) {
-        console.log(num);
-      }
-
-      for (let i = 0; i < arr.length; i++) {
-        console.log(arr[i]);
-      }
-
-      //Own iteration function
+      //Make my own iterator
       function makeIterator(start = 0, end = Infinity, step = 1){
         let nextIndex = start;
         let iterationCount = 0;
@@ -50,11 +34,7 @@
         console.log(result.value);
         result = myIterator.next();
       }
-
-      // What if i want to make an iterator that can be used by JavaScript built in for of iterator?
-      // We can use generator functions for this
       
-
     </script>
   </body>
 </html>
