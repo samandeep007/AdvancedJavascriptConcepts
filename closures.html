@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+</head>
+<body>
+
+    <button onclick="changeToGreen()">Green</button>
+    <button onclick="changeToRed()">Red</button>
+  
+    <script>
+     // Popular example --> mdn --> Lexical scoping
+     function outerFunction(){
+        const username = "Samandeep Singh";
+        function innerFunction(){
+            console.log(username);
+        }
+        return innerFunction();
+     }
+
+     outerFunction();
+
+     //Closure --> mdn example
+     function outer(){
+        const username = "Samandeep Singh";
+        function inner(){
+            console.log(username);
+        }
+        return inner; //It is returning the reference of the inner function insteading of executing it 
+     }
+
+     const displayName = outer()(); //  or const displayName = outer(); displayName();
+
+     function changeBackground(color){ //We know that we cannot directly pass arguments from onClick
+        document.body.style.backgroundColor = color;
+     }
+
+     function changeToGreen(){
+        changeBackground("green")
+     }
+
+     function changeToRed(){
+        changeBackground("red")
+     }
+
+
+
+    </script>
+    
+</body>
+</html>
