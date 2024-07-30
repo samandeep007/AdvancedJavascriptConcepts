@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure another example</title>
+</head>
+<body>
+    <button id="green">Green</button>
+    <button id="red">Red</button>
+    <script>
+        document.getElementById("green").onclick = changeColor("green");
+        document.getElementById("red").onclick = changeColor("red"); //When the functio
+
+        function changeColor(color){ 
+            return function (){ //This is where closure comes into play because onclick needs a function reference, not a function itself --> if you will pass the function, it will automatically execute it
+                
+                document.body.style.backgroundColor= color;
+            }
+
+           //In JavaScript, the onclick attribute (or any event handler attribute) needs a function reference rather than a function call to ensure that the function is executed only when the event occurs, not immediately when the code is executed.
+            
+        }
+    </script>
+</body>
+</html>
