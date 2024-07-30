@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterators</title>
+</head>
+<body>
+    <script>
+        function makeIterator(start = 0, end=Infinity, step = 1){
+            let nextIndex = start;
+            let iterationCount = 0;
+            return {
+                next(){
+                    let result;
+                    if(iterationCount<end){
+                        result = {value: nextIndex, done: false};
+                        iterationCount++;
+                        nextIndex+=step;
+                        return result;
+                    }
+                    return {value: iterationCount, done: true}
+                }
+            }
+        }
+
+        //How to actually use it?
+        const myIterator = makeIterator(1,10, 1);
+        let result = myIterator.next();
+
+        while(!result.done){
+            console.log(result.value);
+            result = myIterator.next();
+        }
+        
+    </script>
+</body>
+</html>
