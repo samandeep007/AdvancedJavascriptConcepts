@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+</head>
+<body>
+    
+    <script>
+        //fetching data from API
+        const url = "https://jsonplaceholder.typicode.com/posts";
+        // Method 1"
+        fetch(url).then(data => data.json().then(data => console.log(data))).catch(err => null).finally(() => console.log("data fetched"));
+
+        //Method 2
+        async function getData(){
+            const response = await fetch(url);
+            console.log(await response.json());
+        }
+
+        getData()
+        
+    </script>
+</body>
+</html>
