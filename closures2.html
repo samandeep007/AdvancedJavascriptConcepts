@@ -10,7 +10,7 @@
     <button id="red">Red</button>
     <script>
         document.getElementById("green").onclick = changeColor("green");
-        document.getElementById("red").onclick = changeColor("red"); //When the functio
+        document.getElementById("red").onclick = changeColor("red");
 
         function changeColor(color){ 
             return function (){ //This is where closure comes into play because onclick needs a function reference, not a function itself --> if you will pass the function, it will automatically execute it
