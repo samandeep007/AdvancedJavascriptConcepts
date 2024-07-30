@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currying another example</title>
+</head>
+<body>
+    <script>
+        // Building an automated email system
+        function sendAutoEmail(to){
+            return function(subject){
+                return function(body){
+                    console.log(`Sending email to ${to} with subject: ${subject} with body ${body}`);
+                }
+            }
+        }
+
+        const team1Work = sendAutoEmail("samandeep0792@gmail.com");
+        const team2Work = team1Work("You are selected for the role"); // Bruh! we don't know what team 1 did, we are just gonna do our work and pass it to the next team
+        const team3Work = team2Work("Congratulations Samandeep! You are selected for the Senior Full Stack Developer role at ABC Company"); 
+
+
+        // Let's do the same using ES6 Arrow function syntax
+        const sendEmail = to => subject => body => console.log(`Sending email to ${to} with subject: ${subject} with body ${body}`); 
+        const emp1Work = sendEmail("samandeep0792@gmail.com");
+        const emp2Work = team1Work("You are selected for the role"); // Bruh! we don't know what team 1 did, we are just gonna do our work and pass it to the next team
+        const emp3Work = team2Work("Congratulations Samandeep! You are selected for the Senior Full Stack Developer role at ABC Company"); 
+
+
+
+
+    </script>
+    
+</body>
+</html>
