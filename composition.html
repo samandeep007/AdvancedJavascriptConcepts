@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Composition</title>
+</head>
+<body>
+    <script>
+        // Use case 1:
+        function add(args){
+            return args[0] + args[1];
+      }
+
+      function square(val){
+        return val * val;
+      }
+
+      function multiply(args){
+        return args[0] * args[1];
+      }
+
+      //Let's say you want to add two values first and then square them sequentially
+
+      //Approach 1:
+      function addAndSquare(a, b){
+        return square(add(a,b));
+      }
+
+      console.log(addAndSquare(2,3)); //Should return 25
+
+
+      //Approach 2:
+      //We can have a generic function
+      function composeTwoFunctions(function1, function2){
+        return function(a, b){
+            return(function2(function1(a, b)))
+        };
+      }
+
+      // composeTwoFunction using ES6 arrow function syntax
+      const composeTwoFunctions2 = (function1, function2) => (a,b) => (function2(function1(a,b)));
+
+      const task = composeTwoFunctions2(add, square);
+      console.log("The result is", task(3,3))
+
+      //What if you want to compose unlimited functions?
+      function compose(...functions){
+        return function(...value){
+            // Iterate on functions from right to left
+            return functions.reduce((a, b) => b(a), value)
+        }
+      }
+
+      const compose2 = (...functions) => (...value) => functions.reduce((a,b) => b(a), value)
+      
+
+      const task2 = compose2(multiply, square, function(val){ return val + 1});
+      console.log("The result 2 is", task2(3,1))
+
+    </script>
+</body>
+</html>
