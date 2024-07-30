@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIFE (Immediately Invoked Function Expressions)</title>
+</head>
+<body>
+    <script>
+        // IIFE (Immediately Invoked Function Expression) is a javascript function that runs as soon as it is defined
+        // Using function syntax
+        (function add(a, b){console.log(a + b)})(2,3);
+        (function sayHello(){console.log("Hello")})();
+        const square = (function square(val){return val * val})(2);
+        console.log(square);
+
+        //Using the arrow function syntax
+        ((name) => console.log("Hello", name))("Samandeep");
+        ((a,b) => console.log(a+b))(2,3);
+        const cube = ((num) => Math.pow(num, 3))(2);
+        console.log(cube)
+
+        //Use cases
+        // It is useful when you don't want to pollute your global namespace.
+        // The variables you define inside an IIFE are destroyed after the function is executed
+
+        //It makes using async/await easier 
+
+        //Traditional approach
+       /* let data;
+        async function getData(){
+            data = fetch();
+        }
+            
+        getData();
+        */
+
+        // const data = (async() => await fetch())();
+
+        const atm = function (initialBalance) {
+            let balance = initialBalance; //Private
+            function withdraw(amount){ //Public
+                if(amount > balance) {
+                    console.log("Are you kidding?")
+                }
+                else {
+                    balance -= amount;
+                    return balance
+                }
+            }
+            return {withdraw};
+        };
+
+        const saman = atm(1000);
+        console.log(saman.withdraw(100));
+
+        
+
+
+
+    </script>
+    
+</body>
+</html>
