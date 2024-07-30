@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Iterator and Generator and YIELD Keyword | What | Practical Use Cases
+    </title>
+  </head>
+  <body>
+    <script>
+      //Ways to iterate an array in javascript
+      const arr = [1, 2, 3, 4, 5];
+      for (const num in arr) {
+        console.log(arr[num]);
+      }
+
+      arr.forEach((element) => console.log(element));
+
+      for (const num of arr) {
+        console.log(num);
+      }
+
+      for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+      }
+
+      //Own iteration function
+      function makeIterator(start = 0, end = Infinity, step = 1){
+        let nextIndex = start;
+        let iterationCount = 0;
+
+        return {
+            next(){
+                let result;
+                if(iterationCount < end){
+                    result = {value: nextIndex, done: false};
+                    nextIndex = nextIndex + step;
+                    iterationCount++;
+                    return result;
+                }
+
+                return {value: iterationCount, done: true}
+            }
+        }
+      }
+
+      const myIterator = makeIterator(1,10,1);
+      let result = myIterator.next();
+      
+      while(!result.done){
+        console.log(result.value);
+        result = myIterator.next();
+      }
+
+
+    </script>
+  </body>
+</html>
