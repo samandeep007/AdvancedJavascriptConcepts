@@ -45,6 +45,19 @@
         changeBackground("red")
      }
 
+     // Another very good example
+     function addTo(num){
+        function add(b){
+            return num + b;
+        }
+        return add; //Returning the inner function reference, and remember its lexical scope will also be returned which means it will have access to the num inside the outer function
+     }
+
+     const add = addTo(5); // We passed in here the value of num that the inner function needs in order to add b to it
+     console.log(`The sum is ${add(10)}`)
+     console.log(`The sum is ${add(5)}`) // the outer function already has 5 in its lexical scope, so the inner function can use num to add the value passed to it through argument and return the sum
+     
+
 
 
     </script>
