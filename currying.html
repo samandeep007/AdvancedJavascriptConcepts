@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currying</title>
+</head>
+<body>
+    <script>
+        function add(a, b, c){
+            return a + b + c;
+        }
+
+        //Let's say I want add to be executed only when there are all three arguments available
+        //This is where currying comes into play
+
+        function add2(a){
+            return function(b){
+                return function(c){
+                    return a + b + c;
+                }
+            }
+        }
+
+        console.log(add2(1)(2)(3)); //It will only return me the result when all three arguments are available
+        // Currying is used for step by step execution of something instead of doing everything at once
+
+    </script>
+</body>
+</html>
