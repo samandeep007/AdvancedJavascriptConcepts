@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom iterator</title>
+</head>
+<body>
+    <script>
+        // yield keyword
+        function* count(){ //If you want to use the yield keyword you need to make the function a generator function
+            yield 2;
+            yield 4;
+            yield 6;            
+        }
+      /*  
+        const even = count();
+        for(const value of even){
+            console.log(value)
+        }
+       */
+
+       fucntion* makeIterator(start, end){
+        for(let i = start; i<=end; i++){
+            yield i;
+        }
+       };
+
+       const one = makeIterator(1, 20);
+       for(const val of one){
+        console.log(val);
+       }
+
+       
+    </script>
+</body>
+</html>
