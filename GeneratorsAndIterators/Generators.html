@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator</title>
+</head>
+<body>
+    <script>
+        //function* basically means that it is a generator function
+        function* makeIterator(start, end, step){
+            for(let i = start; i<=end; i+=step){
+                yield i;
+            }
+        }
+
+        const myIterator = makeIterator(1,10, 1);
+        for(const val of myIterator){
+            console.log(val);
+        }
+    </script>
+</body>
+</html>
