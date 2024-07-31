@@ -1,5 +1,18 @@
 // Let's create a function that can load any script without using Promises
 
+//Let's promisify this loadScript function
+function promisify(fn){
+    return function(...args){
+        return new Promise((resolve, reject) => {
+            return fn(args, (error, result) => {
+                if(error) return reject(error);
+                else return resolve(result)
+            })
+        })
+    }
+}
+
+
 function loadScript(src, callback){
     const script = document.createElement('script');
     script.src = src;
@@ -8,11 +21,22 @@ function loadScript(src, callback){
     document.head.appendChild(script);
 }
 
-loadScript("test.js", (error, script) => {
-    if(error){
-        console.log(error);
+const loadScriptNew = promisify(loadScript);
+(async() => {
+    try {
+        await loadScriptNew('test.js');
+        console.log('Done')
+    } catch (error) {
+        console.error("Error aa gya")
     }
-    else {
-        console.log("Script loaded successfully");
-    }
-})
+})();
+
+
+// loadScript("test.js", (error, script) => {
+//     if(error){
+//         console.log(error);
+//     }
+//     else {
+//         console.log("Script loaded successfully");
+//     }
+// })
